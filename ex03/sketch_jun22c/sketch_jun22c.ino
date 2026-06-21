@@ -1,3 +1,4 @@
+// ESP32板载LED固定引脚GPIO2
 const int ledPin = 2;
 // 时序定义
 const unsigned long dot = 200;    // 短闪时长
@@ -13,6 +14,7 @@ bool ledOn = false;
 void setup() {
   pinMode(ledPin, OUTPUT);
   digitalWrite(ledPin, LOW);
+  Serial.begin(115200); // 初始化串口监视器
 }
 
 void loop() {
@@ -70,7 +72,12 @@ void loop() {
         ledOn = false;
         digitalWrite(ledPin, LOW);
         cnt++;
-        if(cnt >=3){stage=0;cnt=0;}
+        if(cnt >=3){
+          stage=0;
+          cnt=0;
+          // 完整一轮SOS执行完毕，串口输出提示
+          Serial.println("===== 一次完整SOS求救信号发送完成 =====");
+        }
       }
     }
   }

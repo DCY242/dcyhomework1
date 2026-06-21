@@ -1,5 +1,6 @@
 // 定义LED引脚
-const int ledPin = 2;  
+const int ledPin1 = 2; 
+const int ledPin2 = 4;  
 
 // 设置PWM属性
 const int freq = 5000;          // 频率 5000Hz
@@ -10,21 +11,24 @@ void setup() {
 
   // 【新版用法】直接将引脚、频率和分辨率绑定
   // 它会自动返回一个关联的通道（如果需要的话）
-  ledcAttach(ledPin, freq, resolution);
+  ledcAttach(ledPin1, freq, resolution);
+  ledcAttach(ledPin2, freq, resolution);
 }
 
 void loop() {
   // 逐渐变亮
   for(int dutyCycle = 0; dutyCycle <= 255; dutyCycle++){   
     // 【新版用法】直接通过引脚号写入，不再需要指定通道
-    ledcWrite(ledPin, dutyCycle);   
-    delay(100);
+    ledcWrite(ledPin1, dutyCycle);  
+     ledcWrite(ledPin2, dutyCycle);
+    delay(10);
   }
 
   // 逐渐变暗
   for(int dutyCycle = 255; dutyCycle >= 0; dutyCycle--){
-    ledcWrite(ledPin, dutyCycle);   
-    delay(100);
+    ledcWrite(ledPin1, dutyCycle);
+    ledcWrite(ledPin2, dutyCycle);   
+    delay(10);
   }
   
   Serial.println("Breathing cycle completed");

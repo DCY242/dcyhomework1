@@ -11,9 +11,9 @@ void setup() {
 void loop() {
   digitalWrite(ledPin, HIGH);  // 点亮LED
   Serial.println("LED ON");    // 串口输出提示
-  delay(100);                 // 保持1秒（1000毫秒）
+  delay(10000);                 // 保持1秒（1000毫秒）
   
   digitalWrite(ledPin, LOW);   // 熄灭LED
   Serial.println("LED OFF");   // 串口输出提示
-  delay(100);                 // 保持1秒
+  delay(10000);                 // 保持1秒
 }
